@@ -350,6 +350,9 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/FpsMovement.cs"
+"Assets/Scripts/GameController.cs"
+"Assets/Scripts/MazeConstructor.cs"
+"Assets/Scripts/MazeDataGenerator.cs"
 "Assets/Scripts/TriggerEventRouter.cs"
 -langversion:9.0
 
