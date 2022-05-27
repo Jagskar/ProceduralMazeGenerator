@@ -353,6 +353,7 @@
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/MazeConstructor.cs"
 "Assets/Scripts/MazeDataGenerator.cs"
+"Assets/Scripts/MazeMeshGenerator.cs"
 "Assets/Scripts/TriggerEventRouter.cs"
 -langversion:9.0
 

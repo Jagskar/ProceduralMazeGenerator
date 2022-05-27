@@ -6,6 +6,8 @@ using UnityEngine;
 public class MazeConstructor : MonoBehaviour
 {
     private MazeDataGenerator mazeDataGenerator;
+    private MazeMeshGenerator mazeMeshGenerator;
+
     [SerializeField]
     private Material mazeMaterial1;
     [SerializeField]
@@ -18,9 +20,27 @@ public class MazeConstructor : MonoBehaviour
     public bool showDebug;
     public int[,] Data { get; private set; }
 
+    private void DisplayMaze()
+    {
+        GameObject gameObject = new GameObject();
+        gameObject.transform.position = Vector3.zero;
+        gameObject.name = "Procedural Maze";
+        gameObject.tag = "Generated";
+
+        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
+        meshFilter.mesh = mazeMeshGenerator.FromData(Data);
+
+        MeshCollider meshCollider = gameObject.AddComponent<MeshCollider>();
+        meshCollider.sharedMesh = meshFilter.mesh;
+
+        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
+        meshRenderer.materials = new Material[2] { mazeMaterial1, mazeMaterial2 };
+    }
+
     void Awake()
     {
         mazeDataGenerator = new MazeDataGenerator();
+        mazeMeshGenerator = new MazeMeshGenerator();
 
         // 0 = open     1 = blocked
         // Initialise Data with a single empty cell surrounded by walls
@@ -68,5 +88,6 @@ public class MazeConstructor : MonoBehaviour
             Debug.LogError("Odd numbers work better for dungeon size.");
 
         Data = mazeDataGenerator.FromDimensions(rows, cols);
+        DisplayMaze();
     }
 }
